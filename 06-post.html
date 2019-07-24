@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建xhr 对象
+        var xhr = new XMLHttpRequest();
+        // open方法  设置请求方法
+        xhr.open('POST','/query-post');
+        // 设置post方法必须添加
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        // 调用方法 send 发送请求
+        xhr.send('id=123&age=456&name=789');
+        // 当请求响应完毕以后接收服务器响应结果
+        xhr.onload = function () {
+            // console.log(xhr.response);
+            console.log(this.response);
+        }
+    </script>
+</body>
+</html>

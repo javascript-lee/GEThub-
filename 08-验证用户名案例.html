@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="user"><span id="sp"></span>
+    <script>
+        document.getElementById('user').onblur = function () {
+            var us = this.value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/checkuser');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('username=' + us);
+            xhr.onload = function () {
+                if (this.response === 'true') {
+                    document.getElementById('sp').innerHTML = '<font color="red">sorry，用户名已被占用</font>';
+                } else {
+                    document.getElementById('sp').innerHTML = '<font color="green">恭喜,用户名可用</font>'
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

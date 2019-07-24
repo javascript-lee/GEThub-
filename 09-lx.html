@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="btn"><span id="sp"></span>
+    <script>
+    
+        document.getElementById('btn').onblur = function () {
+            var  us = this.value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST','/checkUser');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send('id='+us);
+            xhr.onload = function () {
+                if(this.response === us){
+                    document.getElementById('sp');
+                    sp.style.color = 'red';
+                    sp.innerText = '用户名重复'
+                } else {
+                    document.getElementById('sp');
+                    sp.style.color = 'green';
+                    sp.innerText = '用户名可用'
+                }
+            }
+        }
+    </script>
+</body>
+</html>
