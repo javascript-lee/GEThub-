@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>留言板</title>
+  <link rel="stylesheet" href="./assets/bootstrap.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="display-1">留板</h1>
+    <hr>
+    <!-- <div id="loading">正在拼命加载数据.....</div> -->
+    <ul id="messages" class="list-unstyled">
+
+    </ul>
+    <hr>
+    <div class="form-group">
+      <label for="txt_name">称呼：</label>
+      <input class="form-control" id="txt_name" name="xxx" type="text">
+    </div>
+    <div class="form-group">
+      <label for="txt_content">留言：</label>
+      <textarea class="form-control" id="txt_content" cols="80" rows="10"></textarea>
+    </div>
+    <button type="button" id="btn_send" class="btn btn-primary">提交</button>
+  </div>
+
+
+  <!-- <li class="media">
+      <img class="mr-3" src="avatar.png" alt="张三">
+      <div class="media-body">
+        <h4>张三</h4>
+        <p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+      </div>
+    </li> -->
+  <script src="./assets/template-web.js"></script>
+  <script id="xxx" type="text/html">
+      {{each abcd}}
+        <li class="media">
+          <img class="mr-3" src="avatar.png" alt="张三">
+          <div class="media-body">
+            <h4>{{$value.name}}</h4>
+            <p>{{$value.content}}</p>
+          </div>
+        </li>
+      {{/each}}
+    </script>
+  <script>
+    var xhr = new XMLHttpRequest();
+    function fnut() {
+      xhr.open('GET', '/getMsg');
+      xhr.send();
+      xhr.onload = function () {
+        // var res = this.response;
+        var date = JSON.parse(this.response);
+        console.log(date);
+        var str = template('xxx',{
+          abcd:date
+        })
+
+
+        // var str = '';
+        // for (var i = 0; i < date.length; i++) {
+        //   str += `<li class="media">
+        //       <img class="mr-3" src="avatar.png" alt="张三">
+        //       <div class="media-body">
+        //       <h4>${date[i].name}</h4>
+        //       <p>${date[i].content}</p>
+        //     </div>
+        //   </li>`
+        // }
+        document.getElementById('messages').innerHTML = str;
+      }
+    }
+    fnut();
+  </script>
+
+
+
+  <script>
+
+    document.getElementById('btn_send').onclick = function () {
+
+      var tnm = document.getElementById('txt_name');
+      var tctt = document.getElementById('txt_content');
+
+      xhr.open('POST', '/addMsg');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send(`name=${tnm.value}&content=${tctt.value}`);
+      xhr.onload = function () {
+        if (this.response === 'true') {
+          fnut();
+          tnm.value = '';
+          tctt.value = '';
+        } else {
+          alert('输出错误')
+        }
+      }
+    }
+  </script>
+</body>
+
+
+</html>

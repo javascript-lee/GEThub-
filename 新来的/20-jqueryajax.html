@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <input type="button" value="发送请求" id="btn" />
+        <div style="display: none">玩命加载中...</div>
+    <script src="./assets/jquery.js"></script>
+    <script>    
+        // $.ajax({
+        //     type:'GET',
+        //     url:'/time',
+        //     data:'id=213&name=5456',
+        //     dataType:'json',
+        //     success:function(result){
+        //         console.log(result);
+        //     }
+        // })
+
+        // $.ajax({
+        //     type:'POST',
+        //     url:'/time',
+        //     data:'id=123&name=345',
+        //     dataType:'json',
+        //     success:function(result){
+        //         console.log(result);
+        //     }
+        // })
+
+        // $.ajax({
+        //     type:'GET',
+        //     url:'/time',
+        //     data:'id=123&name=456',
+        //     dataType:'json',
+        //     success:function(result){
+        //         console.log(result);
+        //     }
+        // })
+
+        // $.ajax({
+        //     type:'GET',
+        //     url:'/time',
+        //     data:{id:123,name:45},
+        //     dataType:'json',
+        //     success:function(result){
+        //         console.log(result);
+        //     }
+        // })
+
+
+        // $.post('/query-post',{id:123,age:456},function(result){
+        //     console.log(result);
+        // },'json')
+
+        // $.get('/time',function(result){
+        //     console.log(result);
+        // },'json');
+
+        // $.get('/query-get',{id:123,name:456},function(result){
+        //     console.log(result);
+        // },'json');
+
+
+        $.ajaxSetup({
+            beforeSend:function(){
+                $('div').show();
+            },
+
+            complete:function(){
+                $('div').hide();
+            }
+        })
+        $.ajax({
+            url:'/big-data',
+            success:function(res){
+                console.log(res.length);
+            }
+        })
+        $('#btn').click = function () {
+            $.get('/big-data',function(res){
+                console.log(res.lenght);
+            })
+        }
+    </script>
+</body>
+</html>

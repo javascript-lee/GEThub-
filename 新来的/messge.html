@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>留言板</title>
+  <link rel="stylesheet" href="./assets/bootstrap.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="display-1">留言板</h1>
+    <hr>
+    <!-- <div id="loading">正在拼命加载数据.....</div> -->
+    <ul id="messages" class="list-unstyled">
+
+    </ul>
+    <hr>
+    <div class="form-group">
+      <label for="txt_name">称呼：</label>
+      <input class="form-control" id="txt_name" name="xxx" type="text">
+    </div>
+    <div class="form-group">
+      <label for="txt_content">留言：</label>
+      <textarea class="form-control" id="txt_content" cols="80" rows="10"></textarea>
+    </div>
+    <button type="button" id="btn_send" class="btn btn-primary">提交</button>
+  </div>
+
+  <!-- <li class="media">
+      <img class="mr-3" src="avatar.png" alt="张三">
+      <div class="media-body">
+        <h4>张三</h4>
+        <p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+      </div>
+    </li> -->
+  <script id="xxx" type="text/html">
+    {{each abcd}}
+    <li class="media">
+      <img class="mr-3" src="avatar.png" alt="张三">
+      <div class="media-body">
+        <h4>{{$value.name}}</h4>
+        <p>{{$value.content}}</p>
+      </div>
+    </li>
+    {{/each}}
+  </script>
+
+  <script src="./assets/template-web.js"></script>
+  <script>
+    // 发送Ajax请求，请求所有的留言
+    var xhr = new XMLHttpRequest();
+
+    function loadData() {
+      xhr.open('GET', '/getMsg');
+      xhr.send();
+      xhr.onload = function () {
+        // console.log(this.response);
+        // 将服务器返回的JSON格式的数据，转成JS数组
+        var data = JSON.parse(this.response);
+        console.log(data);
+        // 有数据，有模板，那么就调用template函数即可
+        var str = template('xxx', {
+          abcd: data
+        });
+        // 循环data数组，循环的时候，拼接li。最后把拼接好的所有的li放到ul#messages中
+        /* var str = '';
+        for (var i = 0; i < data.length; i++) {
+          str += `<li class="media">
+                  <img class="mr-3" src="avatar.png">
+                  <div class="media-body">
+                    <h4>` + data[i].name + `</h4>
+                    <p>${data[i].content}</p>
+                  </div>
+                </li>`;
+        } */
+        // 循环结束，拼接了6个li，因为目前只有6条留言
+        document.getElementById('messages').innerHTML = str;
+      }
+    }
+    // 页面刷新，先调用一次函数，保证页面有留言内容
+    loadData();
+  </script>
+
+  <script>
+    // 点击提交按钮的时候，获取输入框的值。然后将其发送到 /addMsg 接口
+    document.getElementById('btn_send').onclick = function () {
+      // 获取输入框
+      var txt_name = document.getElementById('txt_name');
+      var txt_content = document.getElementById('txt_content');
+      // 然后将其发送到 /addMsg 接口
+      // var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/addMsg');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send(`name=${txt_name.value}&content=${txt_content.value}`);
+      xhr.onload = function () {
+        // console.log(this.response);
+        if (this.response === 'true') {
+          // 添加成功
+          // location.reload();
+          loadData();
+          txt_name.value = txt_content.value = '';
+        } else {
+          // 添加失败
+          alert('添加失败');
+        }
+      }
+    }
+  </script>
+</body>
+</html>

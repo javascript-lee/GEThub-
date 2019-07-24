@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script id="xxx" type="text/html">    
+        <h1>{{title}}</h1>
+        <p>{{author}}</p>
+        <p>{{content}}</p>
+        {{if age>18}}
+        <p>欢迎</p>
+        {{else}}
+        <p>禁止</p>
+        {{/if}}
+    </script>
+    <script>
+        var html = template('xxx',{
+            title:'sads',
+            author:'666',
+            content:'7777'
+            age:18
+        })
+        console.log(html);
+        document.body.innerHTML = html;
+    </script>
+</body>
+</html>

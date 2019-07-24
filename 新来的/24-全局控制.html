@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="发送请求" id="btn" />
+    <div style="display: none">玩命加载中...</div>
+    <script src="./assets/jquery.js"></script>
+    <script>
+
+        $.ajaxSetup({
+            beforeSend:function(){
+                $('div').show();
+            },
+            complete:function(){
+                $('div').hide();
+            }
+        })
+        $.ajax({
+            url:'/big-data',
+            success:function(res){
+                console.log(res.length);
+            }
+        })
+
+        $('#btn').click(function () {
+            $.get('/big-data',function (res) {
+                console.log(res.length)
+            })
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // $.ajaxSetup({
+        //     beforeSend: function () {
+        //         $('div').show();
+        //     },
+        //     complete: function () {
+        //         $('div').hide();
+        //     }
+        // })
+
+        // $.ajax({
+        //     url: '/big-data',
+        //     success: function (res) {
+        //         console.log(res)
+        //     }
+        // })
+
+        // $('#btn').click(function () {
+        //    $.get('/big-data',function(res){
+        //        console.log(res)
+        //    })
+        // })
+
+        // $.get('/time',function (result) {
+        //     console.log(result);
+        // })
+        // $.get('/query-get',{id:123,name:455},function (result) {
+        //     console.log(result)
+        // },'json')
+
+        // $.post('/query-post',{id:123},function (result) {
+        //     console.log(result)
+        // },'json')
+        // $.get('/time', function (response) {
+        //     console.log(response)
+        // }, 'json')
+
+    </script>
+</body>
+
+</html>
