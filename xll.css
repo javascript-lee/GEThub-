@@ -1,0 +1,77 @@
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 75px !important;
+  }
+}
+body {
+  width: 10rem;
+  margin: 0 auto;
+  font-size: 0.32rem;
+}
+a {
+  text-decoration: none;
+}
+header {
+  height: 1.17333333rem;
+  min-width: 320px;
+  background-color: #FFC001;
+  display: flex;
+  position: fixed;
+  width: 10rem;
+}
+header .left {
+  margin: 0.12rem 0.2rem;
+}
+header .left a img {
+  width: 0.53333333rem;
+  height: 0.93333333rem;
+}
+header .main {
+  flex: 1;
+  background-color: #fff;
+  margin: 0.13333333rem 0.13333333rem;
+  border-radius: 0.66666667rem;
+  display: flex;
+  font-size: 0.32rem;
+}
+header .main span {
+  margin: 0.26666667rem 0.66666667rem;
+  color: #666;
+}
+header .right {
+  width: 1.17333333rem;
+  height: 1.17333333rem;
+  text-align: center;
+  line-height: 1.17333333rem;
+  color: #fff;
+  font-size: 0.32rem;
+}
+.banner a img {
+  width: 100%;
+  vertical-align: middle;
+}
+.ads {
+  display: flex;
+}
+.ads a img {
+  width: 100%;
+}
+nav {
+  height: 3.73333333rem;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.32rem;
+}
+nav a {
+  flex: 20%;
+  height: 1.86666667rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+}
+nav a img {
+  width: 1.09333333rem;
+  height: 1.09333333rem;
+  margin: 0.2rem 0;
+}

@@ -1,0 +1,63 @@
+body {
+    width: 100%;
+    min-width:320px ;
+    max-width: 540px;
+    margin:0 auto;
+    background-color: #ccc;
+    font-size: 14px;
+}
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* -------------------------------搜索区--------------------------------- */
+
+.header {
+    width: 100%;
+    height: 45px;
+    background:#fff;
+    display: flex;
+    align-items: center;
+}
+
+.header .left {
+    flex: 1;
+    height: 26px;
+    line-height: 26px;
+    color: #666;
+    background: #fff;
+    margin: 0 10px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+}
+
+.header .left .ts {
+    width: 15px;
+    height: 15px;
+    background: url(../imgs/sprite.png) no-repeat -59px -280px;
+    background-size: 104px;
+    margin:6px; 
+}
+
+
+
+.header .right {
+    width: 45px;
+    height: 45px;
+    margin-left: 5px;
+}
+
+.header .right .img  {
+    width: 23px;
+    height: 23px;
+    background: url(../imgs/sprite.png) no-repeat -59px -194px;
+    background-size: 104px;
+    margin-top: 5px;
+}
+
+

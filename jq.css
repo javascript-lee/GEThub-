@@ -1,0 +1,12 @@
+.warp {
+
+    width: 100%;
+    height: 500px;
+    background: skyblue;
+}
+
+.warp .left {
+    width: 80%;
+    height: 500px;
+    background: pink;
+}
